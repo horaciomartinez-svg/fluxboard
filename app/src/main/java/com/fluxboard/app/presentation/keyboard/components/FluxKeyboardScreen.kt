@@ -15,7 +15,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentPaste
+import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,6 +36,7 @@ import com.fluxboard.app.domain.models.ClipItem
 fun FluxKeyboardScreen(
     clips: List<ClipItem>,
     onClipSelected: (ClipItem) -> Unit,
+    onShowInputMethodPicker: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -62,6 +65,13 @@ fun FluxKeyboardScreen(
                 fontSize = 11.sp,
                 color = FluxColors.TextSecondary
             )
+            IconButton(onClick = onShowInputMethodPicker) {
+                Icon(
+                    imageVector = Icons.Filled.Keyboard,
+                    contentDescription = "Cambiar teclado",
+                    tint = FluxColors.TextPrimary
+                )
+            }
         }
 
         if (clips.isEmpty()) {

@@ -123,9 +123,9 @@ fun ClipCard(
     }
 }
 
-private fun relativeTime(clip: ClipItem): CharSequence =
+private fun relativeTime(clip: ClipItem): String =
     DateUtils.getRelativeTimeSpanString(
         clip.createdAt.time,
         System.currentTimeMillis(),
         DateUtils.MINUTE_IN_MILLIS
-    )
+    ).toString()

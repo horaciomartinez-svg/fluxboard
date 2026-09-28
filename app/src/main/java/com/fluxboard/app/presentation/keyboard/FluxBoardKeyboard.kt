@@ -6,6 +6,7 @@ import android.content.Context
 import android.inputmethodservice.InputMethodService
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import com.fluxboard.app.core.analytics.AnalyticsEvent
 import com.fluxboard.app.core.analytics.AnalyticsTracker
 import com.fluxboard.app.domain.models.ClipItem
@@ -58,8 +59,16 @@ class FluxBoardKeyboard : InputMethodService() {
         return FluxKeyboardComposeView(
             context = this,
             clips = clipsState,
-            onClipSelected = ::commitClip
+            onClipSelected = ::commitClip,
+            onShowInputMethodPicker = ::showInputMethodPicker
         )
+    }
+
+    /** Abre el selector de teclados del sistema. */
+    private fun showInputMethodPicker() {
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputMethodManager?.showInputMethodPicker()
     }
 
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
