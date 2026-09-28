@@ -1,5 +1,7 @@
 package com.fluxboard.app.data.repository
 
+import android.content.Intent
+import android.net.Uri
 import com.fluxboard.app.core.utils.ActivityProvider
 import com.fluxboard.app.domain.models.SubscriptionTier
 import com.fluxboard.app.domain.repository.ISubscriptionRepository
@@ -152,6 +154,41 @@ class RevenueCatRepositoryImpl @Inject constructor(
                 })
             }
         }
+
+    override suspend fun manageSubscription(): Result<Unit> = withContext(Dispatchers.Main) {
+        val purchases = purchases ?: return@withContext Result.failure(notConfigured())
+        val activity = activityProvider.get()
+            ?: return@withContext Result.failure(IllegalStateException("No hay Activity en primer plano"))
+
+        suspendCancellableCoroutine { continuation ->
+            purchases.getCustomerInfo(object : ReceiveCustomerInfoCallback {
+                override fun onReceived(customerInfo: CustomerInfo) {
+                    val managementUri = customerInfo.managementURL
+                        ?: Uri.parse("https://play.google.com/store/account/subscriptions?package=${activity.packageName}")
+
+                    val opened = runCatching {
+                        activity.startActivity(Intent(Intent.ACTION_VIEW, managementUri))
+                    }.isSuccess
+
+                    if (continuation.isActive) {
+                        continuation.resume(
+                            if (opened) {
+                                Result.success(Unit)
+                            } else {
+                                Result.failure(IllegalStateException("No se pudo abrir la gestión de suscripción"))
+                            }
+                        )
+                    }
+                }
+
+                override fun onError(error: PurchasesError) {
+                    if (continuation.isActive) {
+                        continuation.resume(Result.failure(IllegalStateException(error.message)))
+                    }
+                }
+            })
+        }
+    }
 
     private fun CustomerInfo.toTier(): SubscriptionTier =
         if (entitlements.active.isNotEmpty()) SubscriptionTier.PRO else SubscriptionTier.FREE

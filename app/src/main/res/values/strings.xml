@@ -33,4 +33,18 @@
     <string name="activation_ready_title">¡Teclado activado!</string>
     <string name="activation_ready_body">FluxBoard ya está listo para guardar y pegar tus recortes en cualquier app.</string>
     <string name="activation_ready_cta">¡Todo listo! Ir a la App</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_back">Volver</string>
+    <string name="settings_account_section">Cuenta</string>
+    <string name="settings_account_id_label">ID anónimo</string>
+    <string name="settings_account_id_unknown">Sin sesión</string>
+    <string name="settings_subscription_section">Suscripción</string>
+    <string name="settings_subscription_pro">FluxBoard Pro</string>
+    <string name="settings_subscription_free">Versión Gratuita</string>
+    <string name="settings_manage_subscription">Gestionar Suscripción</string>
+    <string name="settings_legal_section">Legal</string>
+    <string name="settings_privacy_policy">Política de Privacidad</string>
+    <string name="settings_terms_of_service">Términos de Servicio</string>
 </resources>

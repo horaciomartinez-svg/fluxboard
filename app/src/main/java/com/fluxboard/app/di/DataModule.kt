@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import com.fluxboard.app.data.local.ClipDao
 import com.fluxboard.app.data.local.FluxDatabase
+import com.fluxboard.app.data.repository.AuthRepositoryImpl
 import com.fluxboard.app.data.repository.ClipRepositoryImpl
 import com.fluxboard.app.data.repository.RevenueCatRepositoryImpl
+import com.fluxboard.app.domain.repository.IAuthRepository
 import com.fluxboard.app.domain.repository.IClipRepository
 import com.fluxboard.app.domain.repository.ISubscriptionRepository
 import dagger.Binds
@@ -30,6 +32,10 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindSubscriptionRepository(impl: RevenueCatRepositoryImpl): ISubscriptionRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAuthRepository(impl: AuthRepositoryImpl): IAuthRepository
 
     companion object {
 

@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,8 +16,10 @@ import com.fluxboard.app.core.utils.ActivityProvider
 import com.fluxboard.app.core.utils.FluxBoardTheme
 import com.fluxboard.app.presentation.app.onboarding.OnboardingScreen1
 import com.fluxboard.app.presentation.app.onboarding.OnboardingScreen2
+import com.fluxboard.app.presentation.app.onboarding.OnboardingViewModel
 import com.fluxboard.app.presentation.app.paywall.PaywallScreen
 import com.fluxboard.app.presentation.app.settings.KeyboardActivationScreen
+import com.fluxboard.app.presentation.app.settings.SettingsScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -64,6 +67,7 @@ object FluxRoutes {
     const val Onboarding2 = "onboarding_2"
     const val Paywall = "paywall"
     const val ActivationModal = "activation_modal"
+    const val Settings = "settings"
 }
 
 @Composable
@@ -78,7 +82,11 @@ fun FluxBoardApp(
         startDestination = FluxRoutes.Onboarding1
     ) {
         composable(FluxRoutes.Onboarding1) {
-            LaunchedEffect(Unit) { onOnboardingStarted() }
+            val onboardingViewModel: OnboardingViewModel = hiltViewModel()
+            LaunchedEffect(Unit) {
+                onOnboardingStarted()
+                onboardingViewModel.ensureAnonymousSession()
+            }
             OnboardingScreen1(
                 onContinue = { navController.navigate(FluxRoutes.Onboarding2) }
             )
@@ -98,7 +106,17 @@ fun FluxBoardApp(
         }
 
         composable(FluxRoutes.ActivationModal) {
-            KeyboardActivationScreen(onDone = onFinish)
+            KeyboardActivationScreen(
+                onDone = {
+                    navController.navigate(FluxRoutes.Settings) {
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+
+        composable(FluxRoutes.Settings) {
+            SettingsScreen(onBack = onFinish)
         }
     }
 }

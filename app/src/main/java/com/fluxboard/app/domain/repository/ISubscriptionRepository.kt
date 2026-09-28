@@ -27,6 +27,15 @@ interface ISubscriptionRepository {
     suspend fun restorePurchases(): Result<Unit>
 
     /**
+     * Abre el centro de gestión de la suscripción del usuario.
+     *
+     * Consulta a RevenueCat la URL de gestión vigente (managementURL) y la lanza
+     * en el navegador/tienda; si no existe, cae al gestor de suscripciones de
+     * Google Play.
+     */
+    suspend fun manageSubscription(): Result<Unit>
+
+    /**
      * Enlaza el `appUserID` de RevenueCat con el identificador único del usuario
      * (uid de Supabase Auth). Es el equivalente en tiempo de ejecución de
      * `setAppUserID`: permite trazar correctamente el LTV y la conversión.
