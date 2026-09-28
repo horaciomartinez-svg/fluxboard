@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">FluxBoard</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_1_title">Nunca vuelvas a perder un enlace importante.</string>
+    <string name="onboarding_1_body">FluxBoard guarda automáticamente todo lo que copias para que no tengas que cambiar de aplicación constantemente.</string>
+    <string name="onboarding_2_title">Tu historial, directo en tu teclado.</string>
+    <string name="onboarding_2_body">Pega textos, enlaces y correos anteriores en cualquier campo de texto al instante con nuestro teclado nativo.</string>
+    <string name="action_continue">Continuar</string>
+    <string name="action_next">Siguiente</string>
+
+    <!-- Paywall -->
+    <string name="paywall_title">Desbloquea FluxBoard Pro</string>
+    <string name="paywall_skip">Omitir por ahora</string>
+    <string name="paywall_trial">7 días de prueba gratis</string>
+    <string name="paywall_price_detail">Luego $14.99 USD al año. Cancela cuando quieras.</string>
+    <string name="paywall_cta">Comenzar Prueba Gratuita</string>
+    <string name="paywall_restore">Restaurar compras</string>
+    <string name="paywall_close">Omitir por ahora</string>
+    <string name="paywall_error">No pudimos iniciar la compra. Inténtalo de nuevo.</string>
+    <string-array name="paywall_features">
+        <item>Historial de recortes ilimitado</item>
+        <item>Sincronización en la nube entre dispositivos</item>
+        <item>Recortes fijados y organización avanzada</item>
+        <item>Búsqueda instantánea desde el teclado</item>
+    </string-array>
+
+    <!-- Keyboard activation -->
+    <string name="activation_title">Último paso: Enciende el motor</string>
+    <string name="activation_body">Para proteger tus datos, Android requiere que actives manualmente los teclados nuevos.</string>
+    <string name="activation_cta">Abrir Ajustes de Teclado</string>
+    <string name="activation_privacy_note">Nota: Android muestra una alerta estándar para todos los teclados. FluxBoard nunca leerá contraseñas ni datos de tarjetas de crédito.</string>
+    <string name="activation_ready_title">¡Teclado activado!</string>
+    <string name="activation_ready_body">FluxBoard ya está listo para guardar y pegar tus recortes en cualquier app.</string>
+    <string name="activation_ready_cta">¡Todo listo! Ir a la App</string>
+</resources>

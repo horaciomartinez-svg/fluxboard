@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- FluxBoard Brand Palette (exact HEX from architecture spec) -->
+    <color name="flux_background">#121212</color>
+    <color name="flux_surface">#1E1E1E</color>
+    <color name="flux_primary">#6366F1</color>
+    <color name="flux_success">#10B981</color>
+    <color name="flux_accent">#00E5FF</color>
+    <color name="flux_text_primary">#F9FAFB</color>
+    <color name="flux_text_secondary">#9CA3AF</color>
+    <color name="flux_background_alt">#18181B</color>
+</resources>
